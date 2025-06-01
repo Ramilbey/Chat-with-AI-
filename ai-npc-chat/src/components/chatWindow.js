@@ -22,13 +22,14 @@ function ChatWindow() {
   
 
   const generateAIResponse = async (userInput) => {
-    const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+      const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+      console.log('API Key:' , apiKey)
 
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
         model: "gpt-3.5-turbo",
-        message: [{ role: "user", content: userInput }],
+        messages: [{ role: "user", content: userInput }],
       },
       {
         headers: {
