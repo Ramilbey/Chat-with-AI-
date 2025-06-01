@@ -11,17 +11,15 @@ function ChatWindow() {
     },
   ]);
 
-  const sendMessage = (text) => {
-    const newMessages = [...messages, { from: "user", text }];
-
-    // Add AI response (mock for now)
-    const response = {
-      from: "ai",
-      text: generateAIResponse(text),
-    };
-
+  const sendMessage = async (text) => {
+    const newMessages = [...messages, { from: 'user', text }];
+    setMessages(newMessages);
+  
+    const aiText = await generateAIResponse(text);
+    const response = { from: 'ai', text: aiText };
     setMessages([...newMessages, response]);
   };
+  
 
   const generateAIResponse = async (userInput) => {
     const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
